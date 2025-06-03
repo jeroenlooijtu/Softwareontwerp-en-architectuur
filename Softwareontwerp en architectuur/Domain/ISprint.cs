@@ -24,6 +24,11 @@ namespace Softwareontwerp_en_architectuur.Domain
         public DateOnly EndDate { get; set; }
         public ISprintState State { get; set; }
 
+        public int CountFinishedStoryPoints()
+        {
+            throw new NotImplementedException();
+        }
+
         public int CountStorypoints()
         {
             int points = 0;
@@ -47,16 +52,24 @@ namespace Softwareontwerp_en_architectuur.Domain
 
     public class Backlog_Item : ICountable
     {
+        
+
         public string Name { get; set; }
         public string Description { get; set; }
         public string DefinitionOfDone { get; set; }
-        public IState State { get; set; }
+        public IState State { get; set; } = new TodoState();
         public Developer Developer { get; set; }
-        public List<Activity> Activities { get; set; }
-        public List<INotifier> Notifiers { get; set; }
+        public List<Activity> Activities { get; set; } = new List<Activity>();
+        public List<INotifier> Notifiers { get; set; } = new List<INotifier>();
         public DateOnly CompletedOn { get; set; }
 
-        public Backlog_Item() { }
+        public Backlog_Item(string name, string description, string definitionOfDone, IState state, Developer developer)
+        {
+            Name = name;
+            Description = description;
+            DefinitionOfDone = definitionOfDone;
+            Developer = developer;
+        }
 
         public void Notify()
         {
@@ -70,6 +83,11 @@ namespace Softwareontwerp_en_architectuur.Domain
                 points += a.CountStorypoints();
             }
             return points;
+        }
+
+        public int CountFinishedStoryPoints()
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -88,6 +106,11 @@ namespace Softwareontwerp_en_architectuur.Domain
         public int CountStorypoints()
         {
             return StoryPoints;
+        }
+
+        public int CountFinishedStoryPoints()
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -131,7 +154,7 @@ namespace Softwareontwerp_en_architectuur.Domain
 
     public class TodoState : IState
     {
-        public void NextState(IState state)
+        public void NextState()
         {
             throw new NotImplementedException();
         }
