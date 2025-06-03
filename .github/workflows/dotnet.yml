@@ -26,7 +26,8 @@ jobs:
     - name: install coverage
     - run: dotnet tool install --global dotnet-coverage 
     - name: Build
-      run: dotnet sonarscanner begin /k:jeroenlooijtu_Softwareontwerp-en-architectuur
+      run: |
+          dotnet sonarscanner begin /k:jeroenlooijtu_Softwareontwerp-en-architectuur
           /d:sonar.token=${{ secrets.SONAR_TOKEN }}
           /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
           dotnet build --no-incremental
