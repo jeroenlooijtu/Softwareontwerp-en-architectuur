@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Softwareontwerp en architectuur", "Softwareontwerp en architectuur\Softwareontwerp en architectuur.csproj", "{D6860D3D-C340-4AB3-B1C2-92FAFE8E0505}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOFATests", "SOFATests\SOFATests.csproj", "{8DBA2C32-DCAF-4275-848C-3ED5F24F7409}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOFATestsreal", "SOFATestsreal\SOFATestsreal.csproj", "{765D225E-56EA-48BA-BD92-CA9A0B53270B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{D6860D3D-C340-4AB3-B1C2-92FAFE8E0505}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6860D3D-C340-4AB3-B1C2-92FAFE8E0505}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6860D3D-C340-4AB3-B1C2-92FAFE8E0505}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8DBA2C32-DCAF-4275-848C-3ED5F24F7409}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8DBA2C32-DCAF-4275-848C-3ED5F24F7409}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8DBA2C32-DCAF-4275-848C-3ED5F24F7409}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8DBA2C32-DCAF-4275-848C-3ED5F24F7409}.Release|Any CPU.Build.0 = Release|Any CPU
+		{765D225E-56EA-48BA-BD92-CA9A0B53270B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{765D225E-56EA-48BA-BD92-CA9A0B53270B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{765D225E-56EA-48BA-BD92-CA9A0B53270B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{765D225E-56EA-48BA-BD92-CA9A0B53270B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

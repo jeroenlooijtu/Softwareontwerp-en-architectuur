@@ -154,7 +154,8 @@ namespace Softwareontwerp_en_architectuur.Domain
 
     public class TodoState : IState
     {
-        public void NextState()
+
+        public void NextState(IState state)
         {
             throw new NotImplementedException();
         }
