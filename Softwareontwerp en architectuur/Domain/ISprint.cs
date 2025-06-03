@@ -10,19 +10,22 @@ namespace Softwareontwerp_en_architectuur.Domain
     }
     public interface ISprint
     {
-        public List<Backlog_Item> Backlog { get; set; }
-        public DateOnly BeginDate {  get; set; }
-        public DateOnly EndDate { get; set;}
-
-        public ISprintState State { get; set; }
 
     }
     public class ReviewSprint : ISprint, ICountable
     {
-        public List<Backlog_Item> Backlog { get; set;  }
+        public ReviewSprint( DateOnly beginDate, DateOnly endDate)
+        {
+            BeginDate = beginDate;
+            EndDate = endDate;
+
+        }
+
+        public List<Backlog_Item> Backlog { get; set;  } = new List<Backlog_Item>();
         public DateOnly BeginDate { get; set; }
         public DateOnly EndDate { get; set; }
-        public ISprintState State { get; set; }
+        public ISprintState State { get; set; } = new CreatedSprintState();
+
 
         public int CountFinishedStoryPoints()
         {
@@ -98,15 +101,23 @@ namespace Softwareontwerp_en_architectuur.Domain
 
     public class Activity : ICountable
     {
+        public Activity(string name, string description, Developer developer, int storyPoints)
+        {
+            Name = name;
+            Description = description;
+            Developer = developer;
+            StoryPoints = storyPoints;
+        }
+
         public string Name { get; set;}
         public string Description { get; set; }
-        public IState State { get; set; }
+        public IState State { get; set; } = new TodoState();
 
         public Developer Developer { get; set; }
 
         public int StoryPoints { get; set; }
 
-        public Activity() { }
+        
 
         public int CountStorypoints()
         {
