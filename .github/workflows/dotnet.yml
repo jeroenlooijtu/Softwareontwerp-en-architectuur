@@ -10,6 +10,7 @@ on:
     branches: [ "master" ]
 
 jobs:
+
   build:
 
     runs-on: ubuntu-latest
@@ -22,17 +23,14 @@ jobs:
         dotnet-version: 8.0.x
     - name: Restore dependencies
       run: dotnet restore
+    - name: install coverage
+    - run: dotnet tool install --global dotnet-coverage 
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet sonarscanner begin /k:jeroenlooijtu_Softwareontwerp-en-architectuur
+          /d:sonar.token=${{ secrets.SONAR_TOKEN }}
+          /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+          dotnet build --no-incremental
+          dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
+          dotnet sonarscanner end /d:sonar.token=${{ secrets.SONAR_TOKEN }}
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: sonarscanner-dotnet
-      uses: np-13/sonarscan-dotnet@v0.1.0
-      with:
-          sonarProjectKey: jeroenlooijtu_Softwareontwerp-en-architectuur
-    # The name of the SonarQube project
-          sonarProjectName: Softwareontwerp-en-architectuur
-    # The name of the SonarQube organization in SonarCloud. For hosted SonarQube, skip this setting.
-          sonarOrganization: jeroenlooijtu
-    # .NET SDK version to be used with the project
-    # Optional command arguments to 'dotnet build'
