@@ -35,5 +35,4 @@ jobs:
     # The name of the SonarQube organization in SonarCloud. For hosted SonarQube, skip this setting.
           sonarOrganization: jeroenlooijtu
     # .NET SDK version to be used with the project
-          dotnetVersion: 8.0
     # Optional command arguments to 'dotnet build'
