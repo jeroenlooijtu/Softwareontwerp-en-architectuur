@@ -63,7 +63,7 @@ namespace Softwareontwerp_en_architectuur.Domain
         public List<INotifier> Notifiers { get; set; } = new List<INotifier>();
         public DateOnly CompletedOn { get; set; }
 
-        public Backlog_Item(string name, string description, string definitionOfDone, IState state, Developer developer)
+        public Backlog_Item(string name, string description, string definitionOfDone, Developer developer)
         {
             Name = name;
             Description = description;
@@ -74,6 +74,11 @@ namespace Softwareontwerp_en_architectuur.Domain
         public void Notify()
         {
 
+        }
+
+        public void ChangeState(IState state)
+        {
+            this.State = state;
         }
 
         public int CountStorypoints()

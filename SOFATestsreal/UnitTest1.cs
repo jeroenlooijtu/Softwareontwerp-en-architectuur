@@ -7,7 +7,15 @@ namespace SOFATestsreal
         [Fact]
         public void Test1()
         {
-            Backlog_Item item = new Backlog_Item()
+            //Arrange
+            Developer dev = new Developer();
+            Backlog_Item item = new Backlog_Item("Make work", "Make sure this method works", "It works", dev);
+
+            //Act
+            item.ChangeState(new DoingState());
+
+            //Assert
+            Assert.True(item.State.GetType() == typeof(DoingState));
         }
     }
 }
