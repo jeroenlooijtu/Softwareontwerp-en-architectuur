@@ -1,4 +1,5 @@
 using Softwareontwerp_en_architectuur.Domain;
+using Softwareontwerp_en_architectuur.Domain.State;
 
 namespace SOFATestsreal
 {
@@ -9,7 +10,7 @@ namespace SOFATestsreal
         {
             //Arrange
             Developer dev = new Developer();
-            Backlog_Item item = new Backlog_Item("Make work", "Make sure this method works", "It works", dev);
+            Backlog_Item item = new Backlog_Item("Make work", "Make sure this method works", "It works");
 
             //Act
             item.ChangeState(new DoingState());
@@ -24,8 +25,8 @@ namespace SOFATestsreal
             ReviewSprint sprint = new ReviewSprint(new DateOnly(2020, 12, 25), new DateOnly(2021, 1, 23));
 
             Developer dev = new Developer();
-            Backlog_Item item = new Backlog_Item("Make work", "Make sure this method works", "It works", dev);
-            Backlog_Item item2 = new Backlog_Item("Make work", "Make sure this method works", "It works", dev);
+            Backlog_Item item = new Backlog_Item("Make work", "Make sure this method works", "It works");
+            Backlog_Item item2 = new Backlog_Item("Make work", "Make sure this method works", "It works");
             Activity act1 = new Activity("Make workx", "Making it extra work", dev,  2);
             Activity act2 = new Activity("Make workx", "Making it extra work", dev, 4);
             Activity act3 = new Activity("Make workx", "Making it extra work", dev, 6);
