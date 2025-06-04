@@ -8,7 +8,7 @@ namespace Softwareontwerp_en_architectuur.Domain
         public string Name { get; set; }
         public string Description { get; set; }
         public string DefinitionOfDone { get; set; }
-        public IState State { get; set; } = new TodoState();
+        public BacklogState State { get; set; }
         public Developer? Developer { get; private set; }
         public List<Activity> Activities { get; set; } = new List<Activity>();
         public List<INotifier> Notifiers { get; set; } = new List<INotifier>();
@@ -21,12 +21,12 @@ namespace Softwareontwerp_en_architectuur.Domain
             DefinitionOfDone = definitionOfDone;
         }
 
-        public void Notify()
+/*        public void Notify()
         {
 
         }
-
-        public void ChangeState(IState state)
+*/
+        public void ChangeState(BacklogState state)
         {
             this.State = state;
         }
@@ -49,6 +49,7 @@ namespace Softwareontwerp_en_architectuur.Domain
         {
             if (Project.DeveloperInvolved(developer))
             {
+                this.State = new DoingState(this);
                 this.Developer = developer;
                 return;
             }

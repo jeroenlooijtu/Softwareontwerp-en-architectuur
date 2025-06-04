@@ -1,48 +1,47 @@
 ﻿namespace Softwareontwerp_en_architectuur.Domain.State
 {
-    public class TodoState : IState
+    public class TodoState : BacklogState
     {
+        public TodoState(Backlog_Item backlog_item) : base(backlog_item)
+        {
+        }
 
-        public void NextState(IState state)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class DoingState : IState
-    {
-        public void NextState(IState state)
-        {
-            throw new NotImplementedException();
-        }
-    }
-    public class ReadyForTestingState : IState
-    {
-        public void NextState(IState state)
-        {
-            throw new NotImplementedException();
-        }
-    }
-    public class TestingState : IState
-    {
-        public void NextState(IState state)
-        {
-            throw new NotImplementedException();
-        }
-    }
-    public class TestedState : IState
-    {
-        public void NextState(IState state)
-        {
-            throw new NotImplementedException();
-        }
     }
 
-    public class DoneState : IState
+    public class DoingState : BacklogState
     {
-        public void NextState(IState state)
+        public DoingState(Backlog_Item backlog_item) : base(backlog_item)
         {
-            throw new NotImplementedException();
         }
+
+    }
+    public class ReadyForTestingState : BacklogState
+    {
+        public ReadyForTestingState(Backlog_Item backlog_item) : base(backlog_item)
+        {
+        }
+
+    }
+    public class TestingState : BacklogState
+    {
+        public TestingState(Backlog_Item backlog_item) : base(backlog_item)
+        {
+        }
+
+    }
+    public class TestedState : BacklogState
+    {
+        public TestedState(Backlog_Item backlog_item) : base(backlog_item)
+        {
+        }
+
+    }
+
+    public class DoneState : BacklogState
+    {
+        public DoneState(Backlog_Item backlog_item) : base(backlog_item)
+        {
+        }
+
     }
 }
