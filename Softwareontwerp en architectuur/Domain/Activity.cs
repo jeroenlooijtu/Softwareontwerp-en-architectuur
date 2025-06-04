@@ -1,4 +1,6 @@
-﻿namespace Softwareontwerp_en_architectuur.Domain
+﻿using Softwareontwerp_en_architectuur.Domain.State;
+
+namespace Softwareontwerp_en_architectuur.Domain
 {
     public class Activity : ICountable
     {

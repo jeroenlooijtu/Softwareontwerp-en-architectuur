@@ -9,16 +9,16 @@ namespace Softwareontwerp_en_architectuur.Domain
         public string Description { get; set; }
         public string DefinitionOfDone { get; set; }
         public IState State { get; set; } = new TodoState();
-        public Developer Developer { get; set; }
+        public Developer? Developer { get; private set; }
         public List<Activity> Activities { get; set; } = new List<Activity>();
         public List<INotifier> Notifiers { get; set; } = new List<INotifier>();
         public DateOnly CompletedOn { get; set; }
-        public Backlog_Item(string name, string description, string definitionOfDone, Developer developer)
+        public Project? Project { get; set; }
+        public Backlog_Item(string name, string description, string definitionOfDone)
         {
             Name = name;
             Description = description;
             DefinitionOfDone = definitionOfDone;
-            Developer = developer;
         }
 
         public void Notify()
@@ -44,6 +44,13 @@ namespace Softwareontwerp_en_architectuur.Domain
         public int CountFinishedStoryPoints()
         {
             throw new NotImplementedException();
+        }
+        public void AssignDeveloper(Developer developer)
+        {
+            if (Project.DeveloperInvolved(developer))
+            {
+                this.Developer = developer;
+            }
         }
     }
 }
