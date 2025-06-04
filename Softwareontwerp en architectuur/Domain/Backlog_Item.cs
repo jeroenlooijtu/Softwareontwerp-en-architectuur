@@ -50,7 +50,9 @@ namespace Softwareontwerp_en_architectuur.Domain
             if (Project.DeveloperInvolved(developer))
             {
                 this.Developer = developer;
+                return;
             }
+            throw new InvalidOperationException("Developer not in the project");
         }
     }
 }
