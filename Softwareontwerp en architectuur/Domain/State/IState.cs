@@ -9,13 +9,8 @@
             this.backlog_item = backlog_item;
         }
 
-        public abstract void ToDevelopment();
-        public abstract void DoneDeveloping();
-        public abstract void ToTesting();
-        public abstract void DoneTesting();
-        public abstract void Accepted();
-        public abstract void NotAccepted();
-        public abstract void TestsFailed();
+        public abstract void NextState();
+        public abstract void RegressState();
 
     }
 }
