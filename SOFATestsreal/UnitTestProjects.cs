@@ -54,7 +54,7 @@ namespace SOFATestsreal
             //Act
             project.AddBacklogItem(item);
             //Assert
-            Assert.True(project.backlog.Contains(item));
+            Assert.True(project.Backlog.Contains(item));
             Assert.Equal(item.Project, project);
         }
         [Fact]

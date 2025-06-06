@@ -14,7 +14,7 @@ namespace Softwareontwerp_en_architectuur.Domain
 
         public string Name { get; set; }
         public string Description { get; set; }
-        public State State { get; set; } = new TodoState();
+        public bool IsFinished { get; set; } = false;
 
         public Developer Developer { get; set; }
 

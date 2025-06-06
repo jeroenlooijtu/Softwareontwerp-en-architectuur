@@ -4,11 +4,11 @@
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public List<Developer> developers = new List<Developer>();
+        public List<Developer> Developers = new List<Developer>();
         public DateOnly StartedOn { get; set; }
         public List<ISprint> DoneSprints = new List<ISprint>();
         public Developer? LeadDeveloper { get; set; }
-        public List<Backlog_Item> backlog = new List<Backlog_Item>();
+        public List<Backlog_Item> Backlog = new List<Backlog_Item>();
 
         public Project(string title, string description, DateOnly startedOn)
         {
@@ -21,7 +21,7 @@
 
         public void AddDeveloper(Developer developer)
         {
-            this.developers.Add(developer);
+            this.Developers.Add(developer);
         }
         public void AddFinishedSprint()
         {
@@ -36,12 +36,12 @@
 
         public bool DeveloperInvolved(Developer developer)
         {
-            return this.developers.Contains(developer);
+            return this.Developers.Contains(developer);
         }
         public void AddBacklogItem(Backlog_Item backlog_Item)
         {
             backlog_Item.Project = this;
-            this.backlog.Add(backlog_Item);
+            this.Backlog.Add(backlog_Item);
         }
     }
 }

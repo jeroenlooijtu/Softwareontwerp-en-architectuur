@@ -2,11 +2,11 @@
 {
     public abstract class BacklogState
     {
-        public Backlog_Item backlog_item;
+        public Backlog_Item Backlog_item;
 
         public BacklogState(Backlog_Item backlog_item)
         {
-            this.backlog_item = backlog_item;
+            this.Backlog_item = backlog_item;
         }
 
         public abstract void NextState();

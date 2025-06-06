@@ -13,7 +13,7 @@ namespace SOFATestsreal
             Backlog_Item item = new Backlog_Item("Make work", "Make sure this method works", "It works");
 
             //Act
-            item.ChangeState(new DoingState());
+            item.ChangeState(new DoingState(item));
 
             //Assert
             Assert.True(item.State.GetType() == typeof(DoingState));

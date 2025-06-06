@@ -8,12 +8,12 @@
 
         public override void NextState()
         {
-            backlog_item.State = new DoingState(backlog_item);
+            Backlog_item.State = new DoingState(Backlog_item);
         }
 
         public override void RegressState()
         {
-            throw new NotImplementedException();
+            throw new InvalidOperationException("No earlier state exists");
         }
     }
 
@@ -25,12 +25,17 @@
 
         public override void NextState()
         {
-            backlog_item.State = new ReadyForTestingState(backlog_item);
+            if (!Backlog_item.AreActivitiesFinished())
+            {
+                throw new InvalidOperationException("Not all activities are finished");
+            }
+            
+            Backlog_item.State = new ReadyForTestingState(Backlog_item);
         }
 
         public override void RegressState()
         {
-            throw new NotImplementedException();
+            Backlog_item.State = new TodoState(Backlog_item);
         }
     }
     public class ReadyForTestingState : BacklogState
@@ -41,12 +46,12 @@
 
         public override void NextState()
         {
-            backlog_item.State = new TestingState(backlog_item);
+            Backlog_item.State = new TestingState(Backlog_item);
         }
 
         public override void RegressState()
         {
-            throw new NotImplementedException();
+            Backlog_item.State = new TodoState(Backlog_item);
         }
     }
     public class TestingState : BacklogState
@@ -57,12 +62,13 @@
 
         public override void NextState()
         {
-            backlog_item.State = new TestedState(backlog_item);
+            Backlog_item.State = new TestedState(Backlog_item);
         }
 
         public override void RegressState()
         {
-            backlog_item.State = new TodoState(backlog_item);
+            Backlog_item.CompletedOn = null;
+            Backlog_item.State = new TodoState(Backlog_item);
         }
     }
     public class TestedState : BacklogState
@@ -73,12 +79,13 @@
 
         public override void NextState()
         {
-            backlog_item.State = new DoneState(backlog_item);
+            Backlog_item.CompletedOn = DateOnly.FromDateTime(DateTime.Now);
+            Backlog_item.State = new DoneState(Backlog_item);
         }
 
         public override void RegressState()
         {
-            backlog_item.State = new ReadyForTestingState(backlog_item);
+            Backlog_item.State = new ReadyForTestingState(Backlog_item);
         }
     }
 
@@ -90,12 +97,13 @@
 
         public override void NextState()
         {
-            throw new NotImplementedException();
+            throw new InvalidOperationException("There is no next state");
         }
 
         public override void RegressState()
         {
-            throw new NotImplementedException();
+            Backlog_item.CompletedOn = null;
+            Backlog_item.State = new TodoState(Backlog_item);
         }
     }
 }
