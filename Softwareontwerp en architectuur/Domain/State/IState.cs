@@ -2,9 +2,9 @@
 {
     public abstract class BacklogState
     {
-        public Backlog_Item Backlog_item;
+        public BacklogItem Backlog_item;
 
-        public BacklogState(Backlog_Item backlog_item)
+        public BacklogState(BacklogItem backlog_item)
         {
             this.Backlog_item = backlog_item;
         }

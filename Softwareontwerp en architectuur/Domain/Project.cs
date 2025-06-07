@@ -8,7 +8,7 @@
         public DateOnly StartedOn { get; set; }
         public List<ISprint> DoneSprints = new List<ISprint>();
         public Developer? LeadDeveloper { get; set; }
-        public List<Backlog_Item> Backlog = new List<Backlog_Item>();
+        public List<BacklogItem> Backlog = new List<BacklogItem>();
 
         public Project(string title, string description, DateOnly startedOn)
         {
@@ -38,7 +38,7 @@
         {
             return this.Developers.Contains(developer);
         }
-        public void AddBacklogItem(Backlog_Item backlog_Item)
+        public void AddBacklogItem(BacklogItem backlog_Item)
         {
             backlog_Item.Project = this;
             this.Backlog.Add(backlog_Item);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SOFATestsreal
 {
-    public class UnitTestStat : StateTestBase
+    public class UnitTestState : StateTestBase
     {
 
         [Fact]
@@ -15,19 +15,18 @@ namespace SOFATestsreal
         {
             //Act
             Action act = () => Item.State.RegressState();
-            InvalidOperationException e = Assert.Throws<InvalidOperationException>(() => act());
             //Assert
+            InvalidOperationException e = Assert.Throws<InvalidOperationException>(act);
             Assert.Equal("No earlier state exists", e.Message);
-            Assert.True(Item.State.GetType() == typeof(TodoState));
+            Assert.IsType<TodoState>(Item.State);
         }
         [Fact]
         public void StateChangeOnDeveloperAssigning() {
             //Act
             Item.AssignDeveloper(Dev);
-
             //Assert
             Assert.Equal(Item.Developer, Dev);
-            Assert.True(Item.State.GetType() == typeof(DoingState));
+            Assert.IsType<DoingState>(Item.State);
         }
         [Fact]
         public void StateChangeToReadyForTestingFail()
@@ -36,176 +35,159 @@ namespace SOFATestsreal
             Item.AssignDeveloper(Dev);
             Action act = () => Item.State.NextState();
             //Assert
-            InvalidOperationException e = Assert.Throws<InvalidOperationException>(() => act());
+            InvalidOperationException e = Assert.Throws<InvalidOperationException>(act);
             Assert.Equal("Not all activities are finished", e.Message);
 
         }
         [Fact]
         public void StateChangeToReadyForTestingSucces()
         {
-            //Act
+            //Arrange
             Item.AssignDeveloper(Dev);
-            foreach (var a in Activites)
-            {
-                a.IsFinished = true;
-            }
+            Activites.Select(a => { a.IsFinished = true; return a; }).ToList();
+            //Act
             Item.State.NextState();
             //Assert
-            Assert.True(Item.State.GetType() == typeof(ReadyForTestingState));
+            Assert.IsType<ReadyForTestingState>(Item.State);
 
         }
         [Fact]
         public void StateChangeRegressToToDo()
         {
-            //Act
+            //Arrange
             Item.AssignDeveloper(Dev);
-            foreach (var a in Activites)
-            {
-                a.IsFinished = true;
-            }
+            Activites.Select(a => { a.IsFinished = true; return a; }).ToList();
             Item.State.NextState();
+            //Act
             Item.State.RegressState();
             //Assert
-            Assert.True(Item.State.GetType() == typeof(TodoState));
+            Assert.IsType<TodoState>(Item.State);
 
         }
         [Fact]
         public void StateChangeDoingToToDo()
         {
-            //Act
+            //Arrange
             Item.AssignDeveloper(Dev);
+            //Act
             Item.State.RegressState();
-
             //Assert
             Assert.Equal(Item.Developer, Dev);
-            Assert.True(Item.State.GetType() == typeof(TodoState));
+            Assert.IsType<TodoState>(Item.State);
         }
 
         [Fact]
         public void StateChangeToReadyForTestingOnlySomeActivitiesFinished()
         {
-            //Act
+            //Arrange
             Activites.First().IsFinished = true;
             Item.AssignDeveloper(Dev);
+            //Act
             Action act = () => Item.State.NextState();
             //Assert
-            InvalidOperationException e = Assert.Throws<InvalidOperationException>(() => act());
+            InvalidOperationException e = Assert.Throws<InvalidOperationException>(act);
             Assert.Equal("Not all activities are finished", e.Message);
 
         }
         [Fact]
         public void StateChangeToTesting()
         {
-            //Act
+            //Arrange
             Item.AssignDeveloper(Dev);
-            foreach (var a in Activites)
-            {
-                a.IsFinished = true;
-            }
+            Activites.Select(a => { a.IsFinished = true; return a; }).ToList();
             Item.State.NextState();
+            //Act
             Item.State.NextState();
             //Assert
-            Assert.True(Item.State.GetType() == typeof(TestingState));
+            Assert.IsType<TestingState>(Item.State);
         }
 
         [Fact]
         public void StateChangeToTested()
         {
-            //Act
+            //Arrange
             Item.AssignDeveloper(Dev);
-            foreach (var a in Activites)
-            {
-                a.IsFinished = true;
-            }
+            Activites.Select(a => { a.IsFinished = true; return a; }).ToList();
             Item.State.NextState();
             Item.State.NextState();
+            //Act
             Item.State.NextState();
             //Assert
-            Assert.True(Item.State.GetType() == typeof(TestedState));
+            Assert.IsType<TestedState>(Item.State);
         }
 
         [Fact]
         public void StateChangeFromTestingToToDo()
         {
-            //Act
+            //Arrange
             Item.AssignDeveloper(Dev);
-            foreach (var a in Activites)
-            {
-                a.IsFinished = true;
-            }
+            Activites.Select(a => { a.IsFinished = true; return a; }).ToList();
             Item.State.NextState();
             Item.State.NextState();
+            //Act
             Item.State.RegressState();
             //Assert
-            Assert.True(Item.State.GetType() == typeof(TodoState));
+            Assert.IsType<TodoState>(Item.State);
         }
         [Fact]
         public void StateChangeToDone()
         {
-            //Act
+            //Arrange
             Item.AssignDeveloper(Dev);
-            foreach (var a in Activites)
-            {
-                a.IsFinished = true;
-            }
+            Activites.Select(a => { a.IsFinished = true; return a; }).ToList();
             Item.State.NextState();
             Item.State.NextState();
             Item.State.NextState();
+            //Act
             Item.State.NextState();
             //Assert
             Assert.Equal(Item.CompletedOn, DateOnly.FromDateTime(DateTime.Now));
-            Assert.True(Item.State.GetType() == typeof(DoneState));
+            Assert.IsType<DoneState>(Item.State);
         }
         [Fact]
         public void StateChangeFromTestedToReadyForTesting()
         {
-            //Act
+            //Arrange
             Item.AssignDeveloper(Dev);
-            foreach (var a in Activites)
-            {
-                a.IsFinished = true;
-            }
+            Activites.Select(a => { a.IsFinished = true; return a; }).ToList();
             Item.State.NextState();
             Item.State.NextState();
             Item.State.NextState();
+            //Act
             Item.State.RegressState();
             //Assert
-            Assert.True(Item.State.GetType() == typeof(ReadyForTestingState));
+            Assert.IsType<ReadyForTestingState>(Item.State);
         }
         [Fact]
         public void StateChangeFromDoneToToDo()
         {
-            //Act
+            //Arrange
             Item.AssignDeveloper(Dev);
-            foreach (var a in Activites)
-            {
-                a.IsFinished = true;
-            }
+            Activites.Select(a => { a.IsFinished = true; return a; }).ToList();
             Item.State.NextState();
             Item.State.NextState();
             Item.State.NextState();
             Item.State.NextState();
+            //Act
             Item.State.RegressState();
             //Assert
             Assert.Null(Item.CompletedOn);
-            Assert.True(Item.State.GetType() == typeof(TodoState));
+            Assert.IsType<TodoState>(Item.State);
         }
         [Fact]
         public void StateChangeDoneNextStateFail()
         {
-            //Act
+            //Arrange
             Item.AssignDeveloper(Dev);
-            foreach (var a in Activites)
-            {
-                a.IsFinished = true;
-            }
+            Activites.Select(a => { a.IsFinished = true; return a; }).ToList();
             Item.State.NextState();
             Item.State.NextState();
             Item.State.NextState();
             Item.State.NextState();
+            //Act
             Action act = () => Item.State.NextState();
-            InvalidOperationException e = Assert.Throws<InvalidOperationException>(() => act());
             //Assert
+                        InvalidOperationException e = Assert.Throws<InvalidOperationException>(act);
             Assert.Equal(Item.CompletedOn, DateOnly.FromDateTime(DateTime.Now));
             Assert.Equal("There is no next state", e.Message);
         }

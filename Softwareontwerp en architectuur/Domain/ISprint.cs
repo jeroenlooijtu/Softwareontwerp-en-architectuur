@@ -22,7 +22,7 @@ namespace Softwareontwerp_en_architectuur.Domain
 
         }
 
-        public List<Backlog_Item> Backlog { get; set;  } = new List<Backlog_Item>();
+        public List<BacklogItem> Backlog { get; set;  } = new List<BacklogItem>();
         public DateOnly BeginDate { get; set; }
         public DateOnly EndDate { get; set; }
         public ISprintState State { get; set; } = new CreatedSprintState();
@@ -52,7 +52,7 @@ namespace Softwareontwerp_en_architectuur.Domain
 
     public class ReleaseSprint : ISprint
     {
-        public List<Backlog_Item> Backlog { get; set; }
+        public List<BacklogItem> Backlog { get; set; }
         public DateOnly BeginDate { get; set; }
         public DateOnly EndDate { get; set; }
         public ISprintState State { get; set; }

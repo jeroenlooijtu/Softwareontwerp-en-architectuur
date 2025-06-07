@@ -3,7 +3,7 @@ using Softwareontwerp_en_architectuur.Domain.State;
 
 namespace Softwareontwerp_en_architectuur.Domain
 {
-    public class Backlog_Item : ICountable
+    public class BacklogItem : ICountable
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -14,19 +14,13 @@ namespace Softwareontwerp_en_architectuur.Domain
         public List<INotifier> Notifiers { get; set; } = new List<INotifier>();
         public DateOnly? CompletedOn { get; set; }
         public Project? Project { get; set; }
-        public Backlog_Item(string name, string description, string definitionOfDone)
+        public BacklogItem(string name, string description, string definitionOfDone)
         {
             Name = name;
             Description = description;
             DefinitionOfDone = definitionOfDone;
             State = new TodoState(this);
         }
-
-/*        public void Notify()
-        {
-
-        }
-*/
         public void ChangeState(BacklogState state)
         {
             this.State = state;
@@ -43,14 +37,12 @@ namespace Softwareontwerp_en_architectuur.Domain
         }
         public bool AreActivitiesFinished()
         {
-            foreach(var a in this.Activities)
+            Activity activity = Activities.First(a => (!a.IsFinished));
+            if (activity != null)
             {
-                if (!a.IsFinished)
-                {
-                    return false;
-                }
+                return true;
             }
-            return true;
+            return false;
         }
 
         public int CountFinishedStoryPoints()

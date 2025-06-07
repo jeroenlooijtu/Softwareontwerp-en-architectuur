@@ -11,13 +11,13 @@ namespace SOFATestsreal
     {
         public Project Project { get; set; }
         public Developer Dev {  get; set; }
-        public Backlog_Item Item { get; set; }
+        public BacklogItem Item { get; set; }
         public List<Activity> Activites { get; set; } = new List<Activity>();
         protected StateTestBase()
         {
-            Project =  new Project("Main project", "The mainj project", new DateOnly(2021, 1, 10));
+            Project =  new Project("Main project", "The main project", new DateOnly(2021, 1, 10));
             Dev = new Developer();
-            Item = new Backlog_Item("Make work", "Make sure this method works", "It works");
+            Item = new BacklogItem("Make work", "Make sure this method works", "It works");
             Project.AddBacklogItem(Item);
             Project.AddDeveloper(Dev);
             Activity act1 = new Activity("Make workx", "Making it extra work", Dev, 2);

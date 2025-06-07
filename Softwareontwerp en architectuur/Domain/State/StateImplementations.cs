@@ -2,7 +2,7 @@
 {
     public class TodoState : BacklogState
     {
-        public TodoState(Backlog_Item backlog_item) : base(backlog_item)
+        public TodoState(BacklogItem backlog_item) : base(backlog_item)
         {
         }
 
@@ -19,7 +19,7 @@
 
     public class DoingState : BacklogState
     {
-        public DoingState(Backlog_Item backlog_item) : base(backlog_item)
+        public DoingState(BacklogItem backlog_item) : base(backlog_item)
         {
         }
 
@@ -40,7 +40,7 @@
     }
     public class ReadyForTestingState : BacklogState
     {
-        public ReadyForTestingState(Backlog_Item backlog_item) : base(backlog_item)
+        public ReadyForTestingState(BacklogItem backlog_item) : base(backlog_item)
         {
         }
 
@@ -56,7 +56,7 @@
     }
     public class TestingState : BacklogState
     {
-        public TestingState(Backlog_Item backlog_item) : base(backlog_item)
+        public TestingState(BacklogItem backlog_item) : base(backlog_item)
         {
         }
 
@@ -73,7 +73,7 @@
     }
     public class TestedState : BacklogState
     {
-        public TestedState(Backlog_Item backlog_item) : base(backlog_item)
+        public TestedState(BacklogItem backlog_item) : base(backlog_item)
         {
         }
 
@@ -91,7 +91,7 @@
 
     public class DoneState : BacklogState
     {
-        public DoneState(Backlog_Item backlog_item) : base(backlog_item)
+        public DoneState(BacklogItem backlog_item) : base(backlog_item)
         {
         }
 
