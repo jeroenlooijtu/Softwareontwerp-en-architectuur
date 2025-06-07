@@ -187,7 +187,7 @@ namespace SOFATestsreal
             //Act
             Action act = () => Item.State.NextState();
             //Assert
-                        InvalidOperationException e = Assert.Throws<InvalidOperationException>(act);
+            InvalidOperationException e = Assert.Throws<InvalidOperationException>(act);
             Assert.Equal(Item.CompletedOn, DateOnly.FromDateTime(DateTime.Now));
             Assert.Equal("There is no next state", e.Message);
         }

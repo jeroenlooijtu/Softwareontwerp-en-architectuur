@@ -2,13 +2,13 @@
 {
     public class TodoState : BacklogState
     {
-        public TodoState(BacklogItem backlog_item) : base(backlog_item)
+        public TodoState(BacklogItem backlogItem) : base(backlogItem)
         {
         }
 
         public override void NextState()
         {
-            Backlog_item.State = new DoingState(Backlog_item);
+            BacklogItem.State = new DoingState(BacklogItem);
         }
 
         public override void RegressState()
@@ -19,79 +19,79 @@
 
     public class DoingState : BacklogState
     {
-        public DoingState(BacklogItem backlog_item) : base(backlog_item)
+        public DoingState(BacklogItem backlogItem) : base(backlogItem)
         {
         }
 
         public override void NextState()
         {
-            if (!Backlog_item.AreActivitiesFinished())
+            if (!BacklogItem.AreActivitiesFinished())
             {
                 throw new InvalidOperationException("Not all activities are finished");
             }
             
-            Backlog_item.State = new ReadyForTestingState(Backlog_item);
+            BacklogItem.State = new ReadyForTestingState(BacklogItem);
         }
 
         public override void RegressState()
         {
-            Backlog_item.State = new TodoState(Backlog_item);
+            BacklogItem.State = new TodoState(BacklogItem);
         }
     }
     public class ReadyForTestingState : BacklogState
     {
-        public ReadyForTestingState(BacklogItem backlog_item) : base(backlog_item)
+        public ReadyForTestingState(BacklogItem backlogItem) : base(backlogItem)
         {
         }
 
         public override void NextState()
         {
-            Backlog_item.State = new TestingState(Backlog_item);
+            BacklogItem.State = new TestingState(BacklogItem);
         }
 
         public override void RegressState()
         {
-            Backlog_item.State = new TodoState(Backlog_item);
+            BacklogItem.State = new TodoState(BacklogItem);
         }
     }
     public class TestingState : BacklogState
     {
-        public TestingState(BacklogItem backlog_item) : base(backlog_item)
+        public TestingState(BacklogItem backlogItem) : base(backlogItem)
         {
         }
 
         public override void NextState()
         {
-            Backlog_item.State = new TestedState(Backlog_item);
+            BacklogItem.State = new TestedState(BacklogItem);
         }
 
         public override void RegressState()
         {
-            Backlog_item.CompletedOn = null;
-            Backlog_item.State = new TodoState(Backlog_item);
+            BacklogItem.CompletedOn = null;
+            BacklogItem.State = new TodoState(BacklogItem);
         }
     }
     public class TestedState : BacklogState
     {
-        public TestedState(BacklogItem backlog_item) : base(backlog_item)
+        public TestedState(BacklogItem backlogItem) : base(backlogItem)
         {
         }
 
         public override void NextState()
         {
-            Backlog_item.CompletedOn = DateOnly.FromDateTime(DateTime.Now);
-            Backlog_item.State = new DoneState(Backlog_item);
+            BacklogItem.CompletedOn = DateOnly.FromDateTime(DateTime.Now);
+            BacklogItem.State = new DoneState(BacklogItem);
         }
 
         public override void RegressState()
         {
-            Backlog_item.State = new ReadyForTestingState(Backlog_item);
+            BacklogItem.State = new ReadyForTestingState(BacklogItem);
         }
     }
 
     public class DoneState : BacklogState
     {
-        public DoneState(BacklogItem backlog_item) : base(backlog_item)
+        public DoneState(BacklogItem backlogItem) : base(backlogItem)
         {
         }
 
@@ -102,8 +102,8 @@
 
         public override void RegressState()
         {
-            Backlog_item.CompletedOn = null;
-            Backlog_item.State = new TodoState(Backlog_item);
+            BacklogItem.CompletedOn = null;
+            BacklogItem.State = new TodoState(BacklogItem);
         }
     }
 }

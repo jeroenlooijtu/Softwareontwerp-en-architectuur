@@ -37,12 +37,12 @@ namespace Softwareontwerp_en_architectuur.Domain
         }
         public bool AreActivitiesFinished()
         {
-            Activity activity = Activities.First(a => (!a.IsFinished));
-            if (activity != null)
+            
+            if (Activities.Any(a => !a.IsFinished))
             {
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
 
         public int CountFinishedStoryPoints()
