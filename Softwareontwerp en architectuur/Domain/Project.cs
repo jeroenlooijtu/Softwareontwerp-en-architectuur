@@ -4,11 +4,11 @@
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public List<Developer> developers = new List<Developer>();
+        public List<Developer> Developers = new List<Developer>();
         public DateOnly StartedOn { get; set; }
         public List<ISprint> DoneSprints = new List<ISprint>();
         public Developer? LeadDeveloper { get; set; }
-        public List<Backlog_Item> backlog = new List<Backlog_Item>();
+        public List<BacklogItem> Backlog = new List<BacklogItem>();
 
         public Project(string title, string description, DateOnly startedOn)
         {
@@ -21,27 +21,27 @@
 
         public void AddDeveloper(Developer developer)
         {
-            this.developers.Add(developer);
+            this.Developers.Add(developer);
         }
+
         public void AddFinishedSprint()
         {
-            if (this.CurrentSprint.IsFinished())
-            {
-                this.DoneSprints.Add(this.CurrentSprint);
-                this.CurrentSprint = null;
-                return;
-            }
-            throw new InvalidOperationException("Can't add a not finished sprint to the finished sprint list");
+            if (!this.CurrentSprint.IsFinished())
+                throw new InvalidOperationException("Can't add a not finished sprint to the finished sprint list");
+            this.DoneSprints.Add(this.CurrentSprint);
+            this.CurrentSprint = null;
+            return;
         }
 
         public bool DeveloperInvolved(Developer developer)
         {
-            return this.developers.Contains(developer);
+            return this.Developers.Contains(developer);
         }
-        public void AddBacklogItem(Backlog_Item backlog_Item)
+
+        public void AddBacklogItem(BacklogItem backlogItem)
         {
-            backlog_Item.Project = this;
-            this.backlog.Add(backlog_Item);
+            backlogItem.Project = this;
+            this.Backlog.Add(backlogItem);
         }
     }
 }

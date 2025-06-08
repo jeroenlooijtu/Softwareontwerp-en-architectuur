@@ -2,15 +2,13 @@
 {
     public class CreatedSprintState : ISprintState
     {
-
     }
 
     public class DoingSprintState : ISprintState
     {
-
     }
+
     public class DoneSprintState : ISprintState
     {
-
     }
 }
