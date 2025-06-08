@@ -25,23 +25,21 @@
         }
         public void AddFinishedSprint()
         {
-            if (this.CurrentSprint.IsFinished())
-            {
-                this.DoneSprints.Add(this.CurrentSprint);
-                this.CurrentSprint = null;
-                return;
-            }
-            throw new InvalidOperationException("Can't add a not finished sprint to the finished sprint list");
+            if (!this.CurrentSprint.IsFinished())
+                throw new InvalidOperationException("Can't add a not finished sprint to the finished sprint list");
+            this.DoneSprints.Add(this.CurrentSprint);
+            this.CurrentSprint = null;
+            return;
         }
 
         public bool DeveloperInvolved(Developer developer)
         {
             return this.Developers.Contains(developer);
         }
-        public void AddBacklogItem(BacklogItem backlog_Item)
+        public void AddBacklogItem(BacklogItem backlogItem)
         {
-            backlog_Item.Project = this;
-            this.Backlog.Add(backlog_Item);
+            backlogItem.Project = this;
+            this.Backlog.Add(backlogItem);
         }
     }
 }

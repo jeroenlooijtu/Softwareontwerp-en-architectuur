@@ -28,12 +28,7 @@ namespace Softwareontwerp_en_architectuur.Domain
 
         public int CountStorypoints()
         {
-            int points = 0;
-            foreach (ICountable a in this.Activities)
-            {
-                points += a.CountStorypoints();
-            }
-            return points;
+            return this.Activities.Cast<ICountable>().Sum(a => a.CountStorypoints());
         }
         public bool AreActivitiesFinished()
         {
@@ -51,13 +46,11 @@ namespace Softwareontwerp_en_architectuur.Domain
         }
         public void AssignDeveloper(Developer developer)
         {
-            if (Project.DeveloperInvolved(developer))
-            {
-                this.State.NextState();
-                this.Developer = developer;
-                return;
-            }
-            throw new InvalidOperationException("Developer not in the project");
+            if (!Project.DeveloperInvolved(developer))
+                throw new InvalidOperationException("Developer not in the project");
+            this.State.NextState();
+            this.Developer = developer;
+            return;
         }
     }
 }
