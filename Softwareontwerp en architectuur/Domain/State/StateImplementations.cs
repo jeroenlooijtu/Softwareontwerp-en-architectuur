@@ -29,7 +29,7 @@
             {
                 throw new InvalidOperationException("Not all activities are finished");
             }
-
+            BacklogItem.SendTesterNotification(BacklogItem.Name + " has been marked as ready for testing.");
             BacklogItem.State = new ReadyForTestingState(BacklogItem);
         }
 
@@ -70,6 +70,7 @@
         public override void RegressState()
         {
             BacklogItem.CompletedOn = null;
+            BacklogItem.SendNotification();
             BacklogItem.State = new TodoState(BacklogItem);
         }
     }

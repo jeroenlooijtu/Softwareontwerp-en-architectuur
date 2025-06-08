@@ -3,7 +3,7 @@ using Softwareontwerp_en_architectuur.Domain.State;
 
 namespace Softwareontwerp_en_architectuur.Domain
 {
-    public class BacklogItem : ICountable
+    public class BacklogItem : ICountable, IBacklogItemObservable
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -55,6 +55,32 @@ namespace Softwareontwerp_en_architectuur.Domain
             this.State.NextState();
             this.Developer = developer;
             return;
+        }
+
+        public void Subscribe(INotifier notifier)
+        {
+            this.Notifiers.Add(notifier);
+        }
+
+        public void UnSubscribe(INotifier notifier)
+        {
+            this.Notifiers.Remove(notifier);
+        }
+
+        public void SendNotification()
+        {
+            foreach (var notifier in Notifiers)
+            {
+                notifier.SendNotification("");
+            }
+        }
+
+        public void SendTesterNotification(string message)
+        {
+            foreach (var notifier in Notifiers)
+            {
+                notifier.SendNotification(message);
+            }
         }
     }
 }

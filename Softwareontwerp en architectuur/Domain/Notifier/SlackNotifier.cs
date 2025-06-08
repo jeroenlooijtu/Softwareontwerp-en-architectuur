@@ -2,8 +2,9 @@
 {
     public class SlackNotifier : INotifier
     {
-        public void SendNotification()
+        public string SendNotification(string message)
         {
+            return message;
         }
     }
 }
