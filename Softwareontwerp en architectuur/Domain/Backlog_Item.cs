@@ -12,6 +12,7 @@ namespace Softwareontwerp_en_architectuur.Domain
         public Developer? Developer { get; private set; }
         public List<Activity> Activities { get; set; } = new List<Activity>();
         public List<INotifier> Notifiers { get; set; } = new List<INotifier>();
+        public List<IBacklogitemObservable> Observers { get; set; } = new List<IBacklogitemObservable>();
         public DateOnly CompletedOn { get; set; }
         public Project? Project { get; set; }
         public Backlog_Item(string name, string description, string definitionOfDone)
@@ -21,10 +22,7 @@ namespace Softwareontwerp_en_architectuur.Domain
             DefinitionOfDone = definitionOfDone;
         }
 
-        public void Notify()
-        {
-
-        }
+       
 
         public void ChangeState(IState state)
         {
@@ -45,6 +43,7 @@ namespace Softwareontwerp_en_architectuur.Domain
         {
             throw new NotImplementedException();
         }
+
         public void AssignDeveloper(Developer developer)
         {
             if (Project.DeveloperInvolved(developer))
@@ -54,6 +53,25 @@ namespace Softwareontwerp_en_architectuur.Domain
             }
             throw new InvalidOperationException("Developer not in the project");
         }
+
+
+        public void Notify()
+        {
+            foreach (IBacklogitemObservable observer in this.Observers)
+            {
+                observer.SendNotification();
+            }
+        }
+
+        public void Unsubscribe(IBacklogitemObservable observer)
+        {
+            this.Observers.Remove(observer);
+        }
+
+        public void Subscribe(IBacklogitemObservable observer)
+        {
+            this.Observers.Add(observer);
+        }   
     }
 }
 
