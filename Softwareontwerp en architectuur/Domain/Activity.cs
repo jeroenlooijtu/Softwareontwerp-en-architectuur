@@ -21,7 +21,6 @@ namespace Softwareontwerp_en_architectuur.Domain
         public int StoryPoints { get; set; }
 
 
-
         public int CountStorypoints()
         {
             return StoryPoints;

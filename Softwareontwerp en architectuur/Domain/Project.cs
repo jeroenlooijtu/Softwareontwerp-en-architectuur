@@ -23,6 +23,7 @@
         {
             this.Developers.Add(developer);
         }
+
         public void AddFinishedSprint()
         {
             if (!this.CurrentSprint.IsFinished())
@@ -36,6 +37,7 @@
         {
             return this.Developers.Contains(developer);
         }
+
         public void AddBacklogItem(BacklogItem backlogItem)
         {
             backlogItem.Project = this;

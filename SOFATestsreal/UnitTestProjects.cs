@@ -44,6 +44,7 @@ namespace SOFATestsreal
             InvalidOperationException e = Assert.Throws<InvalidOperationException>(act);
             Assert.Equal("Can't add a not finished sprint to the finished sprint list", e.Message);
         }
+
         [Fact]
         public void testAddBacklogItem()
         {
@@ -57,13 +58,14 @@ namespace SOFATestsreal
             Assert.True(project.Backlog.Contains(item));
             Assert.Equal(item.Project, project);
         }
+
         [Fact]
         public void testAssignDeveloperSucces()
         {
             //Arrange
             ReviewSprint sprint = new ReviewSprint(new DateOnly(2020, 12, 25), new DateOnly(2021, 1, 23));
             Project project = new Project("Main project", "The mainj project", new DateOnly(2021, 1, 10));
-            BacklogItem item = new BacklogItem("Make work", "Make sure this method works", "It works"); 
+            BacklogItem item = new BacklogItem("Make work", "Make sure this method works", "It works");
             Developer dev = new Developer();
             //Act
             project.AddBacklogItem(item);
@@ -72,6 +74,7 @@ namespace SOFATestsreal
             //Assert
             Assert.Equal(item.Developer, dev);
         }
+
         [Fact]
         public void TestAssignDeveloperFail()
         {

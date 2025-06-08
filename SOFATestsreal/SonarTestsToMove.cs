@@ -18,6 +18,7 @@ namespace SOFATestsreal
             //Assert
             Assert.True(item.State.GetType() == typeof(DoingState));
         }
+
         [Fact]
         public void Test2()
         {
@@ -27,7 +28,7 @@ namespace SOFATestsreal
             Developer dev = new Developer();
             BacklogItem item = new BacklogItem("Make work", "Make sure this method works", "It works");
             BacklogItem item2 = new BacklogItem("Make work", "Make sure this method works", "It works");
-            Activity act1 = new Activity("Make work", "Making it extra work", dev,  2);
+            Activity act1 = new Activity("Make work", "Making it extra work", dev, 2);
             Activity act2 = new Activity("Make work", "Making it extra work", dev, 4);
             Activity act3 = new Activity("Make work", "Making it extra work", dev, 6);
             Activity act5 = new Activity("Make work", "Making it extra work", dev, 2);
@@ -47,7 +48,6 @@ namespace SOFATestsreal
 
             //Assert
             Assert.Equal(15, x);
-
         }
     }
 }

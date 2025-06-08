@@ -14,6 +14,7 @@ namespace Softwareontwerp_en_architectuur.Domain
         public List<INotifier> Notifiers { get; set; } = new List<INotifier>();
         public DateOnly? CompletedOn { get; set; }
         public Project? Project { get; set; }
+
         public BacklogItem(string name, string description, string definitionOfDone)
         {
             Name = name;
@@ -21,6 +22,7 @@ namespace Softwareontwerp_en_architectuur.Domain
             DefinitionOfDone = definitionOfDone;
             State = new TodoState(this);
         }
+
         public void ChangeState(BacklogState state)
         {
             this.State = state;
@@ -30,13 +32,14 @@ namespace Softwareontwerp_en_architectuur.Domain
         {
             return this.Activities.Cast<ICountable>().Sum(a => a.CountStorypoints());
         }
+
         public bool AreActivitiesFinished()
         {
-            
             if (Activities.Any(a => !a.IsFinished))
             {
                 return false;
             }
+
             return true;
         }
 
@@ -44,6 +47,7 @@ namespace Softwareontwerp_en_architectuur.Domain
         {
             throw new NotImplementedException();
         }
+
         public void AssignDeveloper(Developer developer)
         {
             if (!Project.DeveloperInvolved(developer))
@@ -54,4 +58,3 @@ namespace Softwareontwerp_en_architectuur.Domain
         }
     }
 }
-

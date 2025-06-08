@@ -11,6 +11,5 @@
 
         public abstract void NextState();
         public abstract void RegressState();
-
     }
 }

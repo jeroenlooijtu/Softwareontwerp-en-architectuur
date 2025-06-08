@@ -10,12 +10,13 @@ namespace SOFATestsreal
     public abstract class StateTestBase : IDisposable
     {
         public Project Project { get; set; }
-        public Developer Dev {  get; set; }
+        public Developer Dev { get; set; }
         public BacklogItem Item { get; set; }
         public List<Activity> Activites { get; set; } = new List<Activity>();
+
         protected StateTestBase()
         {
-            Project =  new Project("Main project", "The main project", new DateOnly(2021, 1, 10));
+            Project = new Project("Main project", "The main project", new DateOnly(2021, 1, 10));
             Dev = new Developer();
             Item = new BacklogItem("Make work", "Make sure this method works", "It works");
             Project.AddBacklogItem(Item);
@@ -30,6 +31,7 @@ namespace SOFATestsreal
             Item.Activities.Add(act2);
             Item.Activities.Add(act3);
         }
+
         public void Dispose()
         {
             return;

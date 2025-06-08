@@ -29,7 +29,7 @@
             {
                 throw new InvalidOperationException("Not all activities are finished");
             }
-            
+
             BacklogItem.State = new ReadyForTestingState(BacklogItem);
         }
 
@@ -38,6 +38,7 @@
             BacklogItem.State = new TodoState(BacklogItem);
         }
     }
+
     public class ReadyForTestingState : BacklogState
     {
         public ReadyForTestingState(BacklogItem backlogItem) : base(backlogItem)
@@ -54,6 +55,7 @@
             BacklogItem.State = new TodoState(BacklogItem);
         }
     }
+
     public class TestingState : BacklogState
     {
         public TestingState(BacklogItem backlogItem) : base(backlogItem)
@@ -71,6 +73,7 @@
             BacklogItem.State = new TodoState(BacklogItem);
         }
     }
+
     public class TestedState : BacklogState
     {
         public TestedState(BacklogItem backlogItem) : base(backlogItem)
