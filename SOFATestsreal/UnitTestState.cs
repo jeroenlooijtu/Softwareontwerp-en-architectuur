@@ -1,9 +1,4 @@
 ﻿using Softwareontwerp_en_architectuur.Domain.State;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SOFATestsreal
 {
@@ -21,7 +16,8 @@ namespace SOFATestsreal
             Assert.IsType<TodoState>(Item.State);
         }
         [Fact]
-        public void StateChangeOnDeveloperAssigning() {
+        public void StateChangeOnDeveloperAssigning()
+        {
             //Act
             Item.AssignDeveloper(Dev);
             //Assert
@@ -37,7 +33,6 @@ namespace SOFATestsreal
             //Assert
             InvalidOperationException e = Assert.Throws<InvalidOperationException>(act);
             Assert.Equal("Not all activities are finished", e.Message);
-
         }
         [Fact]
         public void StateChangeToReadyForTestingSucces()
@@ -49,7 +44,6 @@ namespace SOFATestsreal
             Item.State.NextState();
             //Assert
             Assert.IsType<ReadyForTestingState>(Item.State);
-
         }
         [Fact]
         public void StateChangeRegressToToDo()
@@ -62,7 +56,6 @@ namespace SOFATestsreal
             Item.State.RegressState();
             //Assert
             Assert.IsType<TodoState>(Item.State);
-
         }
         [Fact]
         public void StateChangeDoingToToDo()
@@ -87,7 +80,6 @@ namespace SOFATestsreal
             //Assert
             InvalidOperationException e = Assert.Throws<InvalidOperationException>(act);
             Assert.Equal("Not all activities are finished", e.Message);
-
         }
         [Fact]
         public void StateChangeToTesting()
