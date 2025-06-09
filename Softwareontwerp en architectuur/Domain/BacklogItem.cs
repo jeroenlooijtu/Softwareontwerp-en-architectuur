@@ -3,57 +3,58 @@ using Softwareontwerp_en_architectuur.Domain.State;
 
 namespace Softwareontwerp_en_architectuur.Domain
 {
-    public class Backlog_Item
+    public class BacklogItem : ICountable
     {
         public string Name { get; set; }
         public string Description { get; set; }
         public string DefinitionOfDone { get; set; }
-        public IState State { get; set; } = new TodoState();
-        public Developer? Developer { get; private set; }
+        public BacklogState State { get; set; }
+        public Developer? Developer { get; set; }
         public List<Activity> Activities { get; set; } = new List<Activity>();
         public List<INotifier> Notifiers { get; set; } = new List<INotifier>();
-        public DateOnly CompletedOn { get; set; }
+        public DateOnly? CompletedOn { get; set; }
         public Project? Project { get; set; }
-        public Backlog_Item(string name, string description, string definitionOfDone)
+
+        public BacklogItem(string name, string description, string definitionOfDone)
         {
             Name = name;
             Description = description;
             DefinitionOfDone = definitionOfDone;
+            State = new TodoState(this);
         }
 
-        public void Notify()
-        {
-
-        }
-
-        public void ChangeState(IState state)
+        public void ChangeState(BacklogState state)
         {
             this.State = state;
         }
 
         public int CountStorypoints()
         {
-            int points = 0;
-            foreach (ICountable a in this.Activities)
+            return this.Activities.Cast<ICountable>().Sum(a => a.CountStorypoints());
+        }
+
+        public bool AreActivitiesFinished()
+        {
+            if (Activities.Any(a => !a.IsFinished))
             {
-                points += a.CountStorypoints();
+                return false;
             }
-            return points;
+
+            return true;
         }
 
         public int CountFinishedStoryPoints()
         {
             throw new NotImplementedException();
         }
+
         public void AssignDeveloper(Developer developer)
         {
-            if (Project.DeveloperInvolved(developer))
-            {
-                this.Developer = developer;
-                return;
-            }
-            throw new InvalidOperationException("Developer not in the project");
+            if (!Project.DeveloperInvolved(developer))
+                throw new InvalidOperationException("Developer not in the project");
+            this.State.NextState();
+            this.Developer = developer;
+            return;
         }
     }
 }
-
