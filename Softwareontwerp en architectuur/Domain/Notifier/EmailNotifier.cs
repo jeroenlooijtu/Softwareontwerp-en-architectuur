@@ -2,9 +2,13 @@
 {
     public class EmailNotifier : INotifier
     {
-        public void SendNotification()
+        public List<String> receivedMessages = new List<String>();
+        public string SendNotification(string message)
         {
-
+            receivedMessages.Add(message);
+            return message;
         }
+
+       
     }
 }

@@ -7,22 +7,23 @@ namespace Softwareontwerp_en_architectuur.Domain
     {
         int CountStorypoints();
 
-        int CountFinishedStoryPoints(); 
+        int CountFinishedStoryPoints();
     }
+
     public interface ISprint
     {
         public bool IsFinished();
     }
+
     public class ReviewSprint : ISprint, ICountable
     {
-        public ReviewSprint( DateOnly beginDate, DateOnly endDate)
+        public ReviewSprint(DateOnly beginDate, DateOnly endDate)
         {
             BeginDate = beginDate;
             EndDate = endDate;
-
         }
 
-        public List<Backlog_Item> Backlog { get; set;  } = new List<Backlog_Item>();
+        public List<BacklogItem> Backlog { get; set; } = new List<BacklogItem>();
         public DateOnly BeginDate { get; set; }
         public DateOnly EndDate { get; set; }
         public ISprintState State { get; set; } = new CreatedSprintState();
@@ -40,19 +41,19 @@ namespace Softwareontwerp_en_architectuur.Domain
             {
                 points += b.CountStorypoints();
             }
+
             return points;
         }
 
         public bool IsFinished()
         {
             return State.GetType() == typeof(DoneSprintState);
-            
         }
     }
 
     public class ReleaseSprint : ISprint
     {
-        public List<Backlog_Item> Backlog { get; set; }
+        public List<BacklogItem> Backlog { get; set; }
         public DateOnly BeginDate { get; set; }
         public DateOnly EndDate { get; set; }
         public ISprintState State { get; set; }
@@ -64,5 +65,4 @@ namespace Softwareontwerp_en_architectuur.Domain
             return State.GetType() == typeof(DoneSprintState);
         }
     }
-
 }

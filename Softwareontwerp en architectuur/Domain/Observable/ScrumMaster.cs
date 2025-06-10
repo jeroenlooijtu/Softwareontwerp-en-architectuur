@@ -1,6 +1,6 @@
-﻿namespace Softwareontwerp_en_architectuur.Domain.Notifier
+﻿namespace Softwareontwerp_en_architectuur.Domain.Observable
 {
-    public class SlackNotifier : INotifier
+    public class ScrumMaster : IObserver
     {
         public string SendNotification(string message)
         {
