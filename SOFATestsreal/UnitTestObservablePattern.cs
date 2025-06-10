@@ -14,7 +14,7 @@ namespace SOFATestsreal
         {
             //Arrange
             Developer dev = new Developer();
-            Backlog_Item item = new Backlog_Item("Make work", "Make sure this method works", "It works", dev);
+            Backlog_Item item = new Backlog_Item("Make work", "Make sure this method works", "It works");
 
             //Act
             item.ChangeState(new DoingState());
