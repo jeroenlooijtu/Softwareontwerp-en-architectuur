@@ -2,5 +2,5 @@
 
 public class Forum
 {
-    public List<Thread> Threads {get; set;}
+    public List<Discussion> Discussions {get; set;}
 }
