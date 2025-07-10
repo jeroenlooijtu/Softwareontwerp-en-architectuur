@@ -14,7 +14,7 @@ namespace SOFATestsreal
         public void testAddFinishedSprintSucces()
         {
             //Arrange
-            ReviewSprint sprint = new ReviewSprint(new DateOnly(2020, 12, 25), new DateOnly(2021, 1, 23));
+            Sprint sprint = new Sprint(new DateOnly(2020, 12, 25), new DateOnly(2021, 1, 23));
             Project project = new Project("Main project", "The mainj project", new DateOnly(2021, 1, 10));
 
             project.CurrentSprint = sprint;
@@ -32,7 +32,7 @@ namespace SOFATestsreal
         public void testAddFinishedSprintFail()
         {
             //Arrange
-            ReviewSprint sprint = new ReviewSprint(new DateOnly(2020, 12, 25), new DateOnly(2021, 1, 23));
+            Sprint sprint = new Sprint(new DateOnly(2020, 12, 25), new DateOnly(2021, 1, 23));
             Project project = new Project("Main project", "The mainj project", new DateOnly(2021, 1, 10));
 
             project.CurrentSprint = sprint;
@@ -49,7 +49,7 @@ namespace SOFATestsreal
         public void testAddBacklogItem()
         {
             //Arrange
-            ReviewSprint sprint = new ReviewSprint(new DateOnly(2020, 12, 25), new DateOnly(2021, 1, 23));
+            Sprint sprint = new Sprint(new DateOnly(2020, 12, 25), new DateOnly(2021, 1, 23));
             Project project = new Project("Main project", "The mainj project", new DateOnly(2021, 1, 10));
             BacklogItem item = new BacklogItem("Make work", "Make sure this method works", "It works");
             //Act
@@ -63,7 +63,7 @@ namespace SOFATestsreal
         public void testAssignDeveloperSucces()
         {
             //Arrange
-            ReviewSprint sprint = new ReviewSprint(new DateOnly(2020, 12, 25), new DateOnly(2021, 1, 23));
+            Sprint sprint = new Sprint(new DateOnly(2020, 12, 25), new DateOnly(2021, 1, 23));
             Project project = new Project("Main project", "The mainj project", new DateOnly(2021, 1, 10));
             BacklogItem item = new BacklogItem("Make work", "Make sure this method works", "It works");
             Developer dev = new Developer();
@@ -78,7 +78,7 @@ namespace SOFATestsreal
         [Fact]
         public void TestAssignDeveloperFail()
         {
-            ReviewSprint sprint = new ReviewSprint(new DateOnly(2020, 12, 25), new DateOnly(2021, 1, 23));
+            Sprint sprint = new Sprint(new DateOnly(2020, 12, 25), new DateOnly(2021, 1, 23));
             Project project = new Project("Main project", "The mainj project", new DateOnly(2021, 1, 10));
             BacklogItem item = new BacklogItem("Make work", "Make sure this method works", "It works");
             Developer dev = new Developer();
