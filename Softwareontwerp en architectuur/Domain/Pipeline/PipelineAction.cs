@@ -1,4 +1,4 @@
-﻿using Softwareontwerp_en_architectuur.Domain.Pipeline;
+﻿namespace Softwareontwerp_en_architectuur.Domain.Pipeline;
 
 public class PipelineAction : IPipelineStep
 {

@@ -15,9 +15,9 @@ namespace Softwareontwerp_en_architectuur.Domain
         public bool IsFinished();
     }
 
-    public class ReviewSprint : ISprint, ICountable
+    public class Sprint : ISprint, ICountable
     {
-        public ReviewSprint(DateOnly beginDate, DateOnly endDate)
+        public Sprint(DateOnly beginDate, DateOnly endDate)
         {
             BeginDate = beginDate;
             EndDate = endDate;
