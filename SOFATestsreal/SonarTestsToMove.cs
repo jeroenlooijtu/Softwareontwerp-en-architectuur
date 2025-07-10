@@ -6,7 +6,7 @@ namespace SOFATestsreal
     public class SonarTestsToMove : StateTestBase
     {
         [Fact]
-        public void Test1()
+        public void TestInitialStateType()
         {
             //Arrange
             Developer dev = new Developer("Dave", "Dave@gmail.com", "Yoooo", "Developer");
@@ -20,7 +20,7 @@ namespace SOFATestsreal
         }
 
         [Fact]
-        public void Test2()
+        public void TestCountStoryPointsWhichIsntBeingUsedAnymore()
         {
             //Arrange
             Sprint sprint = new Sprint(new DateOnly(2025, 12, 25), new DateOnly(2026, 1, 23));
