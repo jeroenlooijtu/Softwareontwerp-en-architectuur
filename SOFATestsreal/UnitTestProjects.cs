@@ -66,7 +66,7 @@ namespace SOFATestsreal
             Sprint sprint = new Sprint(new DateOnly(2020, 12, 25), new DateOnly(2021, 1, 23));
             Project project = new Project("Main project", "The mainj project", new DateOnly(2021, 1, 10));
             BacklogItem item = new BacklogItem("Make work", "Make sure this method works", "It works");
-            Developer dev = new Developer();
+            Developer dev = new Developer("Dave", "Dave@gmail.com", "Yoooo", "Developer");
             //Act
             project.AddBacklogItem(item);
             project.AddDeveloper(dev);
@@ -81,7 +81,7 @@ namespace SOFATestsreal
             Sprint sprint = new Sprint(new DateOnly(2020, 12, 25), new DateOnly(2021, 1, 23));
             Project project = new Project("Main project", "The mainj project", new DateOnly(2021, 1, 10));
             BacklogItem item = new BacklogItem("Make work", "Make sure this method works", "It works");
-            Developer dev = new Developer();
+            Developer dev = new Developer("Dave", "Dave@gmail.com", "Yoooo", "Developer");
             //Act
             project.AddBacklogItem(item);
 
