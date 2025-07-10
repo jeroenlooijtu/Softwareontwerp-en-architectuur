@@ -19,6 +19,10 @@ namespace Softwareontwerp_en_architectuur.Domain
     {
         public Sprint(DateOnly beginDate, DateOnly endDate)
         {
+            if (beginDate > endDate || beginDate < DateOnly.FromDateTime(DateTime.Now))
+            {
+                throw new ArgumentException("Sprint date must be after todays date");
+            }
             BeginDate = beginDate;
             EndDate = endDate;
         }
