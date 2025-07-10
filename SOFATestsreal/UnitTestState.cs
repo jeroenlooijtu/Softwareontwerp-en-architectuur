@@ -228,5 +228,45 @@ namespace SOFATestsreal
             Assert.Equal(Item.CompletedOn, DateOnly.FromDateTime(DateTime.Now));
             Assert.Equal("There is no next state", e.Message);
         }
+
+        [Fact]
+        public void NotificationOnStateChange()
+        {
+            //Arrange
+            Activites.Select(a =>
+            {
+                a.IsFinished = true;
+                return a;
+            }).ToList();
+            Item.Notifiers.Add(EmailAdapter);
+            Item.State.NextState();
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            //Act
+            Item.State.NextState();
+            String x = sw.ToString().Replace("\r\n", "").Trim();
+            //Assert
+            Assert.Equal("Item is ready for testing Dave Adapted for email", x);
+        }
+
+        [Fact]
+        public void NotificationOnStateChangeSlack()
+        {
+            //Arrange
+            Activites.Select(a =>
+            {
+                a.IsFinished = true;
+                return a;
+            }).ToList();
+            Item.Notifiers.Add(SlackAdapter);
+            Item.State.NextState();
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            //Act
+            Item.State.NextState();
+            String x = sw.ToString().Replace("\r\n", "").Trim();
+            //Assert
+            Assert.Equal("Item is ready for testing Dave Adapted for slack", x);
+        }
     }
 }

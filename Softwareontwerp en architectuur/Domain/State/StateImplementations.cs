@@ -31,6 +31,7 @@
             }
 
             BacklogItem.State = new ReadyForTestingState(BacklogItem);
+            BacklogItem.Notify("Item is ready for testing");
         }
 
         public override void RegressState()

@@ -56,5 +56,13 @@ namespace Softwareontwerp_en_architectuur.Domain
             this.Developer = developer;
             return;
         }
+
+        public void Notify(string message)
+        {
+            foreach (var notifier in Notifiers)
+            {
+                notifier.SendNotification(message);
+            }
+        }
     }
 }

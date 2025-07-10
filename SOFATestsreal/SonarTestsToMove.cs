@@ -9,7 +9,7 @@ namespace SOFATestsreal
         public void Test1()
         {
             //Arrange
-            Developer dev = new Developer();
+            Developer dev = new Developer("Dave", "Dave@gmail.com", "Yoooo", "Developer");
             BacklogItem item = new BacklogItem("Make work", "Make sure this method works", "It works");
 
             //Act
@@ -25,7 +25,7 @@ namespace SOFATestsreal
             //Arrange
             Sprint sprint = new Sprint(new DateOnly(2025, 12, 25), new DateOnly(2026, 1, 23));
 
-            Developer dev = new Developer();
+            Developer dev = new Developer("Dave", "Dave@gmail.com", "Yoooo", "Developer");
             BacklogItem item = new BacklogItem("Make work", "Make sure this method works", "It works");
             BacklogItem item2 = new BacklogItem("Make work", "Make sure this method works", "It works");
             Activity act1 = new Activity("Make work", "Making it extra work", dev, 2);

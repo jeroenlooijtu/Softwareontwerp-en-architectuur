@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Softwareontwerp_en_architectuur.Domain.Factory;
+using Softwareontwerp_en_architectuur.Domain.Notifier;
 using Softwareontwerp_en_architectuur.Domain.Pipeline;
 
 namespace SOFATestsreal
@@ -22,11 +23,15 @@ namespace SOFATestsreal
         public Discussion Discussion { get; set; }
         
         public RapportageFactory Factory { get; set; }
+        public EmailAdapter EmailAdapter { get; set; }
+        public SlackAdapter SlackAdapter { get; set; }
+        public EmailNotifier EmailNotifier { get; set; }
+        public SlackNotifier SlackNotifier { get; set; }
 
         protected StateTestBase()
         {
             Project = new Project("Main project", "The main project", new DateOnly(2021, 1, 10));
-            Dev = new Developer();
+            Dev = new Developer("Dave", "Dave@gmail.com", "Yoooo", "Developer");
             Item = new BacklogItem("Make work", "Make sure this method works", "It works");
             Project.AddBacklogItem(Item);
             Project.AddDeveloper(Dev);
@@ -57,6 +62,11 @@ namespace SOFATestsreal
             postWrapper = new PostWrapper(Dev, "I think this is, wrong");
             Discussion = new Discussion("The item that wasn't good", Item, postWrapper);
             Factory = new RapportageFactory();
+            EmailNotifier = new EmailNotifier();
+            EmailAdapter = new EmailAdapter(EmailNotifier, Dev);
+            SlackNotifier = new SlackNotifier();
+            SlackAdapter = new SlackAdapter(SlackNotifier, Dev);
+            
         }
 
         public void Dispose()
