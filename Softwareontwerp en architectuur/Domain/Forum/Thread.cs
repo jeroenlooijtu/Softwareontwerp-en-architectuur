@@ -3,17 +3,17 @@
 public class Thread : IPost
 {
     public Developer MadeBy {get; set;}
-    public string content {get; set;}
+    public string Content {get; set;}
     public List<IPost> Posts {get; set;} = new List<IPost>();
 
-    public Thread(string content, Developer madeBy)
+    public Thread( Developer madeBy, string content)
     {
         MadeBy = madeBy;
-        this.content = content;
+        this.Content = content;
     }
-    public void AddComment(Comment post)
+
+    public void AddComment(IPost post)
     {
-        
         this.Posts.Add(post);
     }
 
@@ -22,8 +22,4 @@ public class Thread : IPost
         this.Posts.Remove(post);
     }
 
-    public void AddThread(Thread thread)
-    {
-        this.Posts.Add(thread);
-    }
 }

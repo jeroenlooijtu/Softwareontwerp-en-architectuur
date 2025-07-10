@@ -2,6 +2,8 @@
 
 public interface IPost
 {
-    public void AddComment(Comment post);
+    public Developer MadeBy { get; }
+    public string Content { get; }
+    public void AddComment(IPost post);
     public void RemoveComment(IPost post);
 }

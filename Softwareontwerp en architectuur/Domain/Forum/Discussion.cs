@@ -3,6 +3,13 @@
 public class Discussion
 {
     public string Topic {get; set;}
-    public BacklogItem BacklogItem {get; set;}
-    public Thread Thread {get; set;}
+    public BacklogItem backlogItem {get; set;}
+    public IPost IPost {get; set;}
+
+    public Discussion(string topic, BacklogItem backlogItem, IPost post)
+    {
+        Topic = topic;
+        this.backlogItem = backlogItem;
+        IPost = post;
+    }
 }

@@ -2,21 +2,21 @@
 
 public class Comment : IPost
 {
-    public string content { get; set; }
     public Developer MadeBy {get; set;}
+    public string Content { get; }
     public Thread? ThreadCommentedOn {get; set;}
+    public bool Status {get; set;}
 
-    public Comment(string content, Developer madeBy, Thread threadCommentedOn)
+    public Comment(Developer madeBy, string content)
     {
-        this.content = content;
+        this.Content = content;
         MadeBy = madeBy;
+        this.Status = true;
     }
-    public void AddComment(Comment post)
+
+    public void AddComment(IPost post)
     {
-        Thread convertedComment = new Thread(this.content, this.MadeBy);
-        this.ThreadCommentedOn.AddThread(convertedComment);
-        this.ThreadCommentedOn.RemoveComment(this);
-        convertedComment.AddComment(post);
+        throw new NotImplementedException();
     }
 
     public void RemoveComment(IPost post)
