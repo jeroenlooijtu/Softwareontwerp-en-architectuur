@@ -23,7 +23,7 @@ namespace SOFATestsreal
         public void Test2()
         {
             //Arrange
-            Sprint sprint = new Sprint(new DateOnly(2020, 12, 25), new DateOnly(2021, 1, 23));
+            Sprint sprint = new Sprint(new DateOnly(2025, 12, 25), new DateOnly(2026, 1, 23));
 
             Developer dev = new Developer();
             BacklogItem item = new BacklogItem("Make work", "Make sure this method works", "It works");

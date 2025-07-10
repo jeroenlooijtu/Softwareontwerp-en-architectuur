@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Softwareontwerp_en_architectuur.Domain.Factory;
 using Softwareontwerp_en_architectuur.Domain.Pipeline;
 
 namespace SOFATestsreal
@@ -19,6 +20,8 @@ namespace SOFATestsreal
         public IPost post { get; set; }
         public Softwareontwerp_en_architectuur.Domain.Thread Thread { get; set; }
         public Discussion Discussion { get; set; }
+        
+        public RapportageFactory Factory { get; set; }
 
         protected StateTestBase()
         {
@@ -53,6 +56,7 @@ namespace SOFATestsreal
             pipeline.Add(pipelineAction7);
             postWrapper = new PostWrapper(Dev, "I think this is, wrong");
             Discussion = new Discussion("The item that wasn't good", Item, postWrapper);
+            Factory = new RapportageFactory();
         }
 
         public void Dispose()
