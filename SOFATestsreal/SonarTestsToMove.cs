@@ -3,7 +3,7 @@ using Softwareontwerp_en_architectuur.Domain.State;
 
 namespace SOFATestsreal
 {
-    public class SonarTestsToMove
+    public class SonarTestsToMove : StateTestBase
     {
         [Fact]
         public void Test1()
@@ -48,6 +48,15 @@ namespace SOFATestsreal
 
             //Assert
             Assert.Equal(15, x);
+        }
+
+        [Fact]
+        public void TestSprintInThePast()
+        {
+            //Arrange 
+            Action act = () => new Sprint(new DateOnly(2021, 12, 25), new DateOnly(2022, 1, 23));
+            //Act
+            Assert.Throws<ArgumentException>(act);
         }
     }
 }
